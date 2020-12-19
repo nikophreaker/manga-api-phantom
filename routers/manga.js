@@ -20,7 +20,7 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
   
   try {
     const response = await axios.get(url, 
-      { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
+      { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
     console.log(url);
     fetch(
         url,
@@ -79,7 +79,7 @@ router.get("/manga/detail/:slug", async (req, res) => {
     let url = "https://bacakomik.co/manga/" + slug;
     try {
     const response = await axios.get(url, 
-      { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
+      { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
     console.log(url);
     fetch(
         url,
@@ -161,7 +161,7 @@ router.get("/search/:query/:pagenumber", async (req, res) => {
   
     try {
       const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
       console.log(url);
       fetch(
         url,
@@ -209,7 +209,7 @@ router.get("/genres", async (req, res) => {
     const url = `https://bacakomik.co/daftar-genre/`;
     try {
       const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
       console.log(url);
       fetch(
         url,
@@ -246,7 +246,7 @@ router.get("/genres", async (req, res) => {
     :`https://bacakomik.co/genres/${slug}/page/${pagenumber}`;
     try {
       const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
       console.log(url);
       fetch(
         url,
@@ -297,7 +297,7 @@ router.get("/manga/popular/:pagenumber", async (req, res) => {
   
     try {
       const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
       fetch(
         url,
         error => {
@@ -344,7 +344,7 @@ router.get("/manga/popular/:pagenumber", async (req, res) => {
       : `https://bacakomik.co/komik-terbaru/page/${pagenumber}/`;
     try {
       const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
       fetch(
         url,
         error => {
