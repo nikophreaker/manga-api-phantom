@@ -2,6 +2,7 @@ const router = require("express").Router();
 const cheerio = require("cheerio");
 const axios = require('axios');
 const { fetch } = require("../scrappers/index.js");
+const AxiosService = require("../helpers/axiosService");
 
 router.get("/", (req, res) => {
   res.send({
@@ -15,7 +16,7 @@ router.get("/:slug", async (req, res) => {
   const url = `https://bacakomik.co/${slug}`;
   try {
     //response
-    const response = await axios.get(url);
+    const response = await AxiosService(url);
     fetch(
         url,
         error => {
