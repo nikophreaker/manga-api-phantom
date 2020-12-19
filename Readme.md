@@ -1,4 +1,4 @@
-# manga-phantom-api
+# API Manga using phantom
 
 Manga Api indonesia
 
