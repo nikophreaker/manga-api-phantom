@@ -11,7 +11,10 @@ router.get("/manga/popular", async (req, res) => {
       message: "nothing",
     });
   });
-
+//helpers
+const agent = new https.Agent({
+  rejectUnauthorized: false
+});
 //mangalist pagination  -------Done------
 router.get("/manga/page/:pagenumber", async (req, res)=> {
   let pagenumber = req.params.pagenumber;
@@ -20,7 +23,8 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
   
   try {
     const response = await axios.get(url, 
-      { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
+      { httpsAgent: agent, headers: { 'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*', 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
     console.log(url);
     fetch(
         url,
