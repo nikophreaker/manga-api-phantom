@@ -30,7 +30,9 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
     fetch(
         url,
         error => {
-          console.log(error);
+          let err = [];
+          err.push(error);
+          res.send({err: []});
         },
         html => {
     if (200 === 200) {
