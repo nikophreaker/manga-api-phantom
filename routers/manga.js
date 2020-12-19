@@ -37,6 +37,7 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
         html => {
     if (200 === 200) {
         const $ = cheerio.load(html);
+        console.log(html);
         const element = $(".listupd");
         let manga_list = [];
         //let title, type, updated_on, endpoint, thumb, chapter;
