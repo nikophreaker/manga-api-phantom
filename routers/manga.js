@@ -2,7 +2,7 @@ const router = require("express").Router();
 const cheerio = require("cheerio");
 const axios = require('axios');
 const { fetch } = require("../scrappers/index.js");
-const AxiosService = require("../helpers/axiosService");
+//const AxiosService = require("../helpers/axiosService");
 const replaceMangaPage = "https://bacakomik.co/manga/";
 
 // manga popular ----Ignore this for now --------
@@ -19,7 +19,8 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
   `https://bacakomik.co/daftar-manga/page/${pagenumber}/`;
   
   try {
-    const response = await AxiosService(url);
+    const response = await axios.get(url, 
+      { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
     console.log(url);
     fetch(
         url,
@@ -77,7 +78,8 @@ router.get("/manga/detail/:slug", async (req, res) => {
     let slug = req.params.slug;
     let url = "https://bacakomik.co/manga/" + slug;
     try {
-    const response = await AxiosService(url);
+    const response = await axios.get(url, 
+      { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
     console.log(url);
     fetch(
         url,
@@ -158,7 +160,8 @@ router.get("/search/:query/:pagenumber", async (req, res) => {
     `https://bacakomik.co/page/${pagenumber}/?s=${query}`;
   
     try {
-      const response = await AxiosService(url);
+      const response = await axios.get(url, 
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
       console.log(url);
       fetch(
         url,
@@ -205,7 +208,8 @@ router.get("/search/:query/:pagenumber", async (req, res) => {
 router.get("/genres", async (req, res) => {
     const url = `https://bacakomik.co/daftar-genre/`;
     try {
-      const response = await AxiosService(url);
+      const response = await axios.get(url, 
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
       console.log(url);
       fetch(
         url,
@@ -241,7 +245,8 @@ router.get("/genres", async (req, res) => {
     const url = pagenumber === '1' ?`https://bacakomik.co/genres/${slug}/`
     :`https://bacakomik.co/genres/${slug}/page/${pagenumber}`;
     try {
-      const response = await AxiosService(url);
+      const response = await axios.get(url, 
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
       console.log(url);
       fetch(
         url,
@@ -291,7 +296,8 @@ router.get("/manga/popular/:pagenumber", async (req, res) => {
     :`https://bacakomik.co/populer/${pagenumber}`;
   
     try {
-      const response = await AxiosService(url);
+      const response = await axios.get(url, 
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
       fetch(
         url,
         error => {
@@ -337,7 +343,8 @@ router.get("/manga/popular/:pagenumber", async (req, res) => {
       const url = pagenumber == 1 ? `https://bacakomik.co/komik-terbaru/` 
       : `https://bacakomik.co/komik-terbaru/page/${pagenumber}/`;
     try {
-      const response = await AxiosService(url);
+      const response = await axios.get(url, 
+        { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36' }  });
       fetch(
         url,
         error => {
@@ -382,7 +389,7 @@ module.exports = router;
 // let chap_mangaLink = [];
 // let chap_manga = [];
 // try{
-//     const response = await AxiosService(url);
+//     const response = await axios.get(url);
 //     const $ = cheerio.load(response.data);
 //     const itemManga = $('.animepost');
 //     for(let i = 0; i < itemManga.length; i++) {
@@ -399,7 +406,7 @@ module.exports = router;
 
 // try {
 //     for(let i = 0; i < url_manga.length;i++){
-//         const response = await AxiosService(url_manga[i]);
+//         const response = await axios.get(url_manga[i]);
 //         const $ = cheerio.load(response.data);
 //         const itemChapter = $('#chapter_list').find('li');
 //         for(let j = 0; j < itemChapter.length;j++){
