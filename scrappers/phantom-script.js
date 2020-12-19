@@ -58,7 +58,6 @@ page.open(env.URL, function(status) {
       });
 
       if (readyState == "complete") {
-        //waitFor(function() {
         var result = page.evaluate(function() {
           return document.documentElement.outerHTML;
         });
@@ -66,7 +65,6 @@ page.open(env.URL, function(status) {
         // exit and return HTML
         system.stdout.write(result);
         phantom.exit(0);
-        //});
       } else {
         setTimeout(checkReadyState, 50);
       }

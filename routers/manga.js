@@ -23,10 +23,17 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
   `https://bacakomik.co/daftar-manga/page/${pagenumber}/`;
   
   try {
+<<<<<<< HEAD
 //     const response = await axios.get(url, 
 //       { headers: {
 //       'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
 //     console.log(url);
+=======
+    // const response = await axios.get(url, 
+    //   { headers: { 
+    //   'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
+    // console.log(url);
+>>>>>>> a76a279 (testing)
     fetch(
         url,
         error => {
@@ -34,7 +41,11 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
         },
         html => {
     if (200 === 200) {
+<<<<<<< HEAD
         //if (response.status === 200) {
+=======
+      //if (response.status === 200) {
+>>>>>>> a76a279 (testing)
         const $ = cheerio.load(html);
         const element = $(".listupd");
         let manga_list = [];
