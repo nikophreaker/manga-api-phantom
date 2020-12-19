@@ -2,6 +2,7 @@ const router = require("express").Router();
 const cheerio = require("cheerio");
 const axios = require('axios');
 const { fetch } = require("../scrappers/index.js");
+const https = require('https');
 //const AxiosService = require("../helpers/axiosService");
 const replaceMangaPage = "https://bacakomik.co/manga/";
 
