@@ -3,7 +3,8 @@ var env = system.env;
 var page = require("webpage").create();
 
 page.settings.userAgent =
-  "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36";
+  // "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36";
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0";
 
 // default viewport size is small, change it to 1366x768
 page.viewportSize = {
@@ -64,8 +65,8 @@ page.open(env.URL, function(status) {
         });
 
         // exit and return HTML
-        system.stdout.write(result);
         console.log(result);
+        system.stdout.write(result);
         });
         phantom.exit(0);
       } else {
@@ -76,8 +77,8 @@ page.open(env.URL, function(status) {
     checkReadyState();
   } else {
     // if status is not 'success' exit with an error
-    system.stderr.write(error);
     console.log(error);
+    system.stderr.write(error);
     phantom.exit(1);
   }
 });
