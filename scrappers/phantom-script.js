@@ -12,29 +12,29 @@ page.viewportSize = {
 };
 
 //speedUp
-// "use strict";
-// function waitFor(testFx, onReady, timeOutMillis) {
-//     var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 3000, //< Default Max Timout is 3s
-//         start = new Date().getTime(),
-//         condition = false,
-//         interval = setInterval(function() {
-//             if ( (new Date().getTime() - start < maxtimeOutMillis) && !condition ) {
-//                 // If not time-out yet and condition not yet fulfilled
-//                 condition = (typeof(testFx) === "string" ? eval(testFx) : testFx()); //< defensive code
-//             } else {
-//                 if(!condition) {
-//                     // If condition still not fulfilled (timeout but condition is 'false')
-//                     console.log("'waitFor()' timeout");
-//                     phantom.exit(1);
-//                 } else {
-//                     // Condition fulfilled (timeout and/or condition is 'true')
-//                     console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
-//                     typeof(onReady) === "string" ? eval(onReady) : onReady(); //< Do what it's supposed to do once the condition is fulfilled
-//                     clearInterval(interval); //< Stop this interval
-//                 }
-//             }
-//         }, 250); //< repeat check every 250ms
-// };
+"use strict";
+function waitFor(testFx, onReady, timeOutMillis) {
+    var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 3000, //< Default Max Timout is 3s
+        start = new Date().getTime(),
+        condition = false,
+        interval = setInterval(function() {
+            if ( (new Date().getTime() - start < maxtimeOutMillis) && !condition ) {
+                // If not time-out yet and condition not yet fulfilled
+                condition = (typeof(testFx) === "string" ? eval(testFx) : testFx()); //< defensive code
+            } else {
+                if(!condition) {
+                    // If condition still not fulfilled (timeout but condition is 'false')
+                    console.log("'waitFor()' timeout");
+                    phantom.exit(1);
+                } else {
+                    // Condition fulfilled (timeout and/or condition is 'true')
+                    console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
+                    typeof(onReady) === "string" ? eval(onReady) : onReady(); //< Do what it's supposed to do once the condition is fulfilled
+                    clearInterval(interval); //< Stop this interval
+                }
+            }
+        }, 250); //< repeat check every 250ms
+};
 
 //block unnecessary link
 // block_urls = ['gstatic.com', 'arc.io','core.arc.io','static.arc.io', 'caradstag.casa', 'twitter.com', 'facebook.net', 'facebook.com', 'batsdivannab.com','mawsewtwo.com'];
@@ -58,12 +58,14 @@ page.open(env.URL, function(status) {
       });
 
       if (readyState == "complete") {
+        waitFor(function() {
         var result = page.evaluate(function() {
           return document.documentElement.outerHTML;
         });
 
         // exit and return HTML
         system.stdout.write(result);
+        });
         phantom.exit(0);
       } else {
         setTimeout(checkReadyState, 50);
