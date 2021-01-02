@@ -3,8 +3,7 @@ var env = system.env;
 var page = require("webpage").create();
 
 page.settings.userAgent =
-  // "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36";
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0";
+  "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36";
 
 // default viewport size is small, change it to 1366x768
 page.viewportSize = {
@@ -38,17 +37,17 @@ function waitFor(testFx, onReady, timeOutMillis) {
 };
 
 //block unnecessary link
-// block_urls = ['gstatic.com', 'arc.io','core.arc.io','static.arc.io', 'caradstag.casa', 'twitter.com', 'facebook.net', 'facebook.com', 'batsdivannab.com','mawsewtwo.com'];
-// page.onResourceRequested = function(requestData, request){
-//     for(url in block_urls) {
-//         if(requestData.url.indexOf(block_urls[url]) !== -1) {
-//             request.abort();
-//             console.log(requestData.url + " aborted");
-//             return;
-//         }
-//     }            
-// }
-// page.settings.loadImages = false;
+block_urls = ['gstatic.com', 'arc.io','core.arc.io','static.arc.io', 'caradstag.casa', 'twitter.com', 'facebook.net', 'facebook.com', 'batsdivannab.com','mawsewtwo.com'];
+page.onResourceRequested = function(requestData, request){
+    for(url in block_urls) {
+        if(requestData.url.indexOf(block_urls[url]) !== -1) {
+            request.abort();
+            console.log(requestData.url + " aborted");
+            return;
+        }
+    }            
+}
+
 // open page
 page.open(env.URL, function(status) {
   if (status == "success") {
@@ -65,10 +64,9 @@ page.open(env.URL, function(status) {
         });
 
         // exit and return HTML
-        console.log(result);
         system.stdout.write(result);
-        });
         phantom.exit(0);
+        });
       } else {
         setTimeout(checkReadyState, 50);
       }
@@ -77,7 +75,6 @@ page.open(env.URL, function(status) {
     checkReadyState();
   } else {
     // if status is not 'success' exit with an error
-    console.log(error);
     system.stderr.write(error);
     phantom.exit(1);
   }

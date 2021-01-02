@@ -36,7 +36,7 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
           res.send({err: []});
         },
         html => {
-    if (200 === 200) {
+    if (response.status === 200) {
         const $ = cheerio.load(html);
         console.log(html);
         console.log($);
