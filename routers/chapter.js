@@ -36,7 +36,7 @@ router.get("/:slug", async (req, res) => {
     });
     // obj.download_link = link;
 
-    const getPages = $('#Baca_Komik').children().find('#chimg > img');
+    const getPages = $('#Baca_Komikz').children().find('#chimg > img');
     obj.chapter_pages = getPages.length;
     getPages.each((i, el) => {
       chapter_image.push({

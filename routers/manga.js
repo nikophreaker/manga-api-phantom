@@ -27,7 +27,6 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
       { headers: {
       'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
     console.log(url);
-    console.log(response);
     fetch(
         url,
         error => {
@@ -38,8 +37,6 @@ router.get("/manga/page/:pagenumber", async (req, res)=> {
         html => {
     if (response.status === 200) {
         const $ = cheerio.load(html);
-        console.log(html);
-        console.log($);
         const element = $(".listupd");
         let manga_list = [];
         //let title, type, updated_on, endpoint, thumb, chapter;
@@ -88,9 +85,6 @@ router.get("/manga/detail/:slug", async (req, res) => {
     let slug = req.params.slug;
     let url = "https://bacakomik.co/manga/" + slug;
     try {
-    const response = await axios.get(url, 
-      { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
-    console.log(url);
     fetch(
         url,
         error => {
@@ -140,7 +134,6 @@ router.get("/manga/detail/:slug", async (req, res) => {
         let chapter_title = $(el)
           .find(".lchx > a ").text();
         let chapter_endpoint = $(el).find("a").attr("href")
-        console.log(chapter_endpoint);
         if(chapter_endpoint !== undefined){
           const rep = chapter_endpoint.replace('https://bacakomik.co/','')
           chapter.push({
@@ -170,9 +163,6 @@ router.get("/search/:query/:pagenumber", async (req, res) => {
     `https://bacakomik.co/page/${pagenumber}/?s=${query}`;
   
     try {
-      const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
-      console.log(url);
       fetch(
         url,
         error => {
@@ -218,9 +208,6 @@ router.get("/search/:query/:pagenumber", async (req, res) => {
 router.get("/genres", async (req, res) => {
     const url = `https://bacakomik.co/daftar-genre/`;
     try {
-      const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
-      console.log(url);
       fetch(
         url,
         error => {
@@ -255,9 +242,6 @@ router.get("/genres", async (req, res) => {
     const url = pagenumber === '1' ?`https://bacakomik.co/genres/${slug}/`
     :`https://bacakomik.co/genres/${slug}/page/${pagenumber}`;
     try {
-      const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
-      console.log(url);
       fetch(
         url,
         error => {
@@ -283,7 +267,6 @@ router.get("/genres", async (req, res) => {
           endpoint,
         });
       });
-      //console.log(manga_list);
       res.json({
         status: true,
         message: "success",
@@ -306,8 +289,6 @@ router.get("/manga/popular/:pagenumber", async (req, res) => {
     :`https://bacakomik.co/populer/${pagenumber}`;
   
     try {
-      const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
       fetch(
         url,
         error => {
@@ -353,8 +334,6 @@ router.get("/manga/popular/:pagenumber", async (req, res) => {
       const url = pagenumber == 1 ? `https://bacakomik.co/komik-terbaru/` 
       : `https://bacakomik.co/komik-terbaru/page/${pagenumber}/`;
     try {
-      const response = await axios.get(url, 
-        { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36' }  });
       fetch(
         url,
         error => {

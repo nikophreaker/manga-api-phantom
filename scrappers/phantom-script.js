@@ -37,7 +37,7 @@ function waitFor(testFx, onReady, timeOutMillis) {
 };
 
 //block unnecessary link
-block_urls = ['gstatic.com', 'arc.io','core.arc.io','static.arc.io', 'caradstag.casa', 'twitter.com', 'facebook.net', 'facebook.com', 'batsdivannab.com','mawsewtwo.com'];
+block_urls = ['twitter.com', 'facebook.net', 'facebook.com', 'batsdivannab.com','mawsewtwo.com','gstatic.com', 'arc.io','core.arc.io','static.arc.io', 'caradstag.casa'];
 page.onResourceRequested = function(requestData, request){
     for(url in block_urls) {
         if(requestData.url.indexOf(block_urls[url]) !== -1) {
